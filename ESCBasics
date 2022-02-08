@@ -1,0 +1,39 @@
+from machine import Pin, PWM
+from time import sleep
+#for startup turn on microcontroller then connect battery
+pwm = PWM(Pin(18))
+pwm.freq(50)
+pwm.duty_ns(1500000)
+print('idle')
+sleep(10)
+led = Pin(25, Pin.OUT)
+button1 = Pin(19, Pin.IN)
+button2 = Pin(20, Pin.IN)
+SignalToMotor = 1500000 #1500000 is idle, 1000000 is max reverse, 2000000 is max forward
+
+#init process
+#print('3')
+# sleep(1)
+# print('2') #press white button on ESC, then turn on esc
+# sleep(1)
+# print('1')
+# sleep(1)
+# pwm.duty_ns(2000000)
+# print('full')
+# sleep(3)
+# pwm.duty_ns(1000000)
+# print('reverse')
+# sleep(3) # release white button after hearing two beeps
+# pwm.duty_ns(1500000)
+print('start loop')
+while True:
+    if button2.value()==1:
+        SignalToMotor += 500
+        print(i)
+        sleep(0.1)
+    if button1.value()==1:
+        SignalToMotor -= 500
+        print(SignalToMotoSignalToMotor)
+        sleep(0.1)
+    pwm.duty_ns(SignalToMotor)
+
